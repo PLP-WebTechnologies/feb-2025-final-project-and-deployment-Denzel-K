@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Placeholder Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .placeholder {
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+        canvas {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin-bottom: 10px;
+        }
+        button {
+            background-color: #6b9080;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        button:hover {
+            background-color: #4a6b5d;
+        }
+    </style>
+</head>
+<body>
+    <h1>Image Placeholder Generator</h1>
+    <p>This page generates placeholder images for the blog. Click the buttons to download the images.</p>
+    
+    <div class="placeholder">
+        <h2>Post 1 - The Art of Mindfulness</h2>
+        <canvas id="post1" width="800" height="500"></canvas>
+        <button onclick="downloadImage('post1', '../post1.jpg')">Download Image</button>
+    </div>
+    
+    <div class="placeholder">
+        <h2>Post 2 - Finding Balance</h2>
+        <canvas id="post2" width="800" height="500"></canvas>
+        <button onclick="downloadImage('post2', '../post2.jpg')">Download Image</button>
+    </div>
+    
+    <div class="placeholder">
+        <h2>Post 3 - The Power of Gratitude</h2>
+        <canvas id="post3" width="800" height="500"></canvas>
+        <button onclick="downloadImage('post3', '../post3.jpg')">Download Image</button>
+    </div>
+    
+    <div class="placeholder">
+        <h2>Post 4 - Mindful Eating</h2>
+        <canvas id="post4" width="800" height="500"></canvas>
+        <button onclick="downloadImage('post4', '../post4.jpg')">Download Image</button>
+    </div>
+    
+    <div class="placeholder">
+        <h2>Post 5 - Morning Routine</h2>
+        <canvas id="post5" width="800" height="500"></canvas>
+        <button onclick="downloadImage('post5', '../post5.jpg')">Download Image</button>
+    </div>
+    
+    <div class="placeholder">
+        <h2>Post 6 - Digital Detox</h2>
+        <canvas id="post6" width="800" height="500"></canvas>
+        <button onclick="downloadImage('post6', '../post6.jpg')">Download Image</button>
+    </div>
+    
+    <div class="placeholder">
+        <h2>About Us Image</h2>
+        <canvas id="about" width="800" height="500"></canvas>
+        <button onclick="downloadImage('about', '../about-us.jpg')">Download Image</button>
+    </div>
+    
+    <div class="placeholder">
+        <h2>Team Member 1</h2>
+        <canvas id="team1" width="400" height="400"></canvas>
+        <button onclick="downloadImage('team1', '../team1.jpg')">Download Image</button>
+    </div>
+    
+    <div class="placeholder">
+        <h2>Team Member 2</h2>
+        <canvas id="team2" width="400" height="400"></canvas>
+        <button onclick="downloadImage('team2', '../team2.jpg')">Download Image</button>
+    </div>
+    
+    <div class="placeholder">
+        <h2>Team Member 3</h2>
+        <canvas id="team3" width="400" height="400"></canvas>
+        <button onclick="downloadImage('team3', '../team3.jpg')">Download Image</button>
+    </div>
+    
+    <script>
+        // Function to generate a random color
+        function getRandomColor() {
+            const hue = Math.floor(Math.random() * 360);
+            return `hsl(${hue}, 70%, 80%)`;
+        }
+        
+        // Function to draw placeholder image
+        function drawPlaceholder(canvasId, text) {
+            const canvas = document.getElementById(canvasId);
+            const ctx = canvas.getContext('2d');
+            
+            // Background
+            ctx.fillStyle = getRandomColor();
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Text
+            ctx.fillStyle = '#333';
+            ctx.font = 'bold 24px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(text, canvas.width / 2, canvas.height / 2);
+            
+            // Border
+            ctx.strokeStyle = '#fff';
+            ctx.lineWidth = 10;
+            ctx.strokeRect(5, 5, canvas.width - 10, canvas.height - 10);
+        }
+        
+        // Function to download image
+        function downloadImage(canvasId, filename) {
+            const canvas = document.getElementById(canvasId);
+            const link = document.createElement('a');
+            link.download = filename;
+            link.href = canvas.toDataURL('image/jpeg', 0.8);
+            link.click();
+        }
+        
+        // Generate all placeholders
+        window.onload = function() {
+            drawPlaceholder('post1', 'The Art of Mindfulness');
+            drawPlaceholder('post2', 'Finding Balance in a Busy World');
+            drawPlaceholder('post3', 'The Power of Gratitude');
+            drawPlaceholder('post4', 'Mindful Eating Practices');
+            drawPlaceholder('post5', 'Creating a Mindful Morning Routine');
+            drawPlaceholder('post6', 'The Joy of Digital Detox');
+            drawPlaceholder('about', 'About Mindful Musings');
+            drawPlaceholder('team1', 'Sarah Johnson');
+            drawPlaceholder('team2', 'David Chen');
+            drawPlaceholder('team3', 'Maya Patel');
+        };
+    </script>
+</body>
+</html>
